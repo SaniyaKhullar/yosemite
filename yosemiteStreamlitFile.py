@@ -39,6 +39,7 @@ st.dataframe(housePriceDF)
 
 #housePricefig3 = px.scatter(housePriceDF, x="sqft_lot", y="sqft_living", color =colorVariable1, title = "Square Feet of Living as Compared To Square Feet of Lot")
 #st.plotly_chart(housePricefig3)
+numericHouseColumnsTuple = tuple(housePriceDF.select_dtypes(["int", "float"]).columns) # selecting all of the columns that have data types of ints or floats
 
 
 unknownvariable1 = st.selectbox(
