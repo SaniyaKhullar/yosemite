@@ -15,7 +15,7 @@ strokeDF = pd.read_csv("healthcare-dataset-stroke-data.csv")
 
 #################### Introduction: ###########################################################################################
 st.title("House Prices and Strokes")
-st.write("Please note some things about this app....")
+st.write("Please note some things about this streamlit web application")
 # display the image of the class picture
 st.write("This App Was Created By: Alexander, Ashwin, Andre, Gayu, Abhinav")
 st.write("Instructor: Saniya Khullar")
@@ -139,9 +139,27 @@ titleMessage = "Scatterplot of " + unknownvariable2+" as compared to "+unknownva
 housePricefig1 = px.scatter(housePriceDF, x=unknownvariable1, y=unknownvariable2, color = colorVariable1,
                            title = titleMessage)
 st.plotly_chart(housePricefig1)
-
 txt = st.text_area('Analysis of the above Scatterplot Chart', '''This scatterplot for home pricing rate shows the pricing of houses based on the x and y 
 co-ordinates. you can change the x and y choices using the drop down menu. the options range anywhere from bedrooms, views, to price and more! Just like you can change the x and y axis, you can also change the coloring factor.  ''')
+
+
+choice = st.radio("Pick a View Type", ['Terrible View', 'Poor View', 'Average View', 'Good View', 'Excellent View'])
+if choice == 'Terrible View':
+    houseviewDF = housePriceDF[housePriceDF["View Condition"] == "Terrible View"]
+elif choice == 'Poor View':
+    houseviewDF = housePriceDF[housePriceDF["View Condition"] == "Poor View"]
+elif choice == 'Average View':
+    houseviewDF = housePriceDF[housePriceDF["View Condition"] == "Average View"]
+elif choice == 'Good View':
+    houseviewDF = housePriceDF[housePriceDF["View Condition"] == "Good View"]
+else: # choice == 'Excellent View':
+    houseviewDF = housePriceDF[housePriceDF["View Condition"] == "Excellent View"]
+    
+titleBoxPlot = "Boxplot of the Prices of the Homes for Various Conditions (1 to 5 Stars) with a " + choice + ":"
+housePricefig2 = px.box(houseviewDF, x="condition", y="price", 
+                           title = titleBoxPlot)
+st.plotly_chart(housePricefig2)
+
 
 #####################################################################################################################
 
@@ -156,8 +174,8 @@ co-ordinates. you can change the x and y choices using the drop down menu. the o
 st.title("Stroke Prediction based on Variables")
 st.header("Second most leading cause of deaths globally")
 
-# here, you can talk about the new variables you defined.  
-txt = st.text_area('Deriving additional categorical variables for strokes', '''The "general_age" column defines people <30 years old as young, >30 but <=60 as middle-aged, and >60 as old. || "weight" column specifies people with a bmi <18.5 as underweight, >=18.5 but <25 as normal, >=25 but <30 as overweight, >=30 but <35 as obese, and >35 as extremely obese. || "general_glucose_level" column assigns excellent to an average glucose level <=115,   ''')
+# here, you can talk about the new variables you defined.
+txt = st.text_area('Deriving additional categorical variables for strokes', '''The "general_age" column defines people <30 years old as young, >30 but <=60 as middle-aged, and >60 as old.   ||   "weight" column specifies people with a BMI <18.5 as underweight, >=18.5 but <25 as normal, >=25 but <30 as overweight, >=30 but <35 as obese, and >35 as extremely obese.   ||   "general_glucose_level" column assigns excellent to an average glucose level <=115, good if it is >=115 but <= 180, and poor if it is >180.''')
 
 #VERY IMPORTANT: ADDING NEW COLUMNS
 under = 'Young'
