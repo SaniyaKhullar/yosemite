@@ -116,7 +116,6 @@ st.dataframe(housePriceDF)
     # ("yr_built","price", "floors", "waterfront", "yr_renovated","sqft_lot","sqft_living", "condition", "city", "sqft_basement", "statezip", "country"))
 
 numericHouseColumnsTuple = tuple(housePriceDF.select_dtypes(["int", "float"]).columns) # selecting all of the columns that have data types of ints or floats
-
 HouseColumnsTuple = tuple(housePriceDF.columns)
 unknownvariable1 = st.selectbox(
      'What do You Want The X-Axis of This Graph To Show?',
@@ -161,7 +160,7 @@ st.plotly_chart(housePricefig2)
 
 
 categoryForBarChart1 = st.radio("Which feature do you want to learn more about in the bar chart?",  ('Type of Home', 'House Size', 'State/Condition of House', '# Of Stories'))
-categoryForBarChart2 = st.radio("What other feature do you want to be shown in the bar chart?", numericHouseColumnTuple)
+categoryForBarChart2 = st.radio("What other feature do you want to be shown in the bar chart?", numericHouseColumnsTuple)
 titleMessage3 = "Bar Graph of " + categoryForBarChart1 +" as compared to "+ categoryForBarChart2
 
 housePricefig3 = px.bar(housePriceDF, x = categoryForBarChart2, y = categoryForBarChart1, title = titleMessage3)
