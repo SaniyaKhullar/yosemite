@@ -116,9 +116,8 @@ st.dataframe(housePriceDF)
     # ("yr_built","price", "floors", "waterfront", "yr_renovated","sqft_lot","sqft_living", "condition", "city", "sqft_basement", "statezip", "country"))
 
 numericHouseColumnsTuple = tuple(housePriceDF.select_dtypes(["int", "float"]).columns) # selecting all of the columns that have data types of ints or floats
-numericHouseColumnsTuple
+
 HouseColumnsTuple = tuple(housePriceDF.columns)
-HouseColumnsTuple
 unknownvariable1 = st.selectbox(
      'What do You Want The X-Axis of This Graph To Show?',
         numericHouseColumnsTuple)
@@ -160,7 +159,12 @@ housePricefig2 = px.box(houseviewDF, x="condition", y="price",
                            title = titleBoxPlot)
 st.plotly_chart(housePricefig2)
 
+titleMessage3 = "Bar Graph of " + categoryForBarChart1 +" as compared to "+ categoryForBarChart2
 
+categoryForBarChart1 = st.radio("Which feature do you want to learn more about in the bar chart?",  ('Type of Home', 'House Size', 'State/Condition of House', '# Of Stories'))
+categoryForBarChart2 = st.radio("What other feature do you want to be shown in the bar chart?", numericHouseColumnTuple)
+housePricefig3 = px.bar(housePriceDF, x = categoryForBarChart2, y = categoryForBarChart1, title = titleMessage3)
+st.plotly_chart(housePricefig3)
 #####################################################################################################################
 
 
@@ -273,12 +277,11 @@ peopleNoStrokesDF = strokeDF[strokeDF["stroke"] != 1] # dataframe with everyone 
 peopleNoStrokesDF["noStroke"] = 1 # creates a new column called "noStroke" where every row has the value 1
 # strokeDF[strokeDF["stroke"] == 0]
 
-strkcolorVariable2 = "general_glucose_level"
 titleMessage = "Pie Chart of the 249 Individuals WITH Strokes :( based on: "+ strkcolorVariable2
 strokefig2 = px.pie(strokeDF, values='stroke', names=strkcolorVariable2, title = titleMessage)
 st.plotly_chart(strokefig2)
 
-titleMessage2 = "Pie Chart of the 4,861 Individuals WITHOUT Strokes :) based on: "+strkcolorVariable2
+titleMessage2 = "Pie Chart of the 4,861 Individuals WITHOUT Strokes :] based on: "+strkcolorVariable2
 strokefig3 = px.pie(peopleNoStrokesDF, values='noStroke', names=strkcolorVariable2, title = titleMessage2)
 st.plotly_chart(strokefig3)
 
