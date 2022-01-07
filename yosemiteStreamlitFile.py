@@ -43,7 +43,6 @@ valueIfFalse = "Average/Poor Condition"
 # country size is: large if population is greater than or equal to 100 mil
 # country size is: small if less than 100 mil
 housePriceDF['State/Condition of House'] = np.where((housePriceDF.condition >= 4), valueIfTrue, valueIfFalse)
-housePriceDF
 
 valueIfTrue = "Large House"
 valueIfFalse = "Average/Small House"
