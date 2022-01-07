@@ -159,10 +159,11 @@ housePricefig2 = px.box(houseviewDF, x="condition", y="price",
                            title = titleBoxPlot)
 st.plotly_chart(housePricefig2)
 
-titleMessage3 = "Bar Graph of " + categoryForBarChart1 +" as compared to "+ categoryForBarChart2
 
 categoryForBarChart1 = st.radio("Which feature do you want to learn more about in the bar chart?",  ('Type of Home', 'House Size', 'State/Condition of House', '# Of Stories'))
 categoryForBarChart2 = st.radio("What other feature do you want to be shown in the bar chart?", numericHouseColumnTuple)
+titleMessage3 = "Bar Graph of " + categoryForBarChart1 +" as compared to "+ categoryForBarChart2
+
 housePricefig3 = px.bar(housePriceDF, x = categoryForBarChart2, y = categoryForBarChart1, title = titleMessage3)
 st.plotly_chart(housePricefig3)
 #####################################################################################################################
